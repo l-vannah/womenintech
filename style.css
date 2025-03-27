@@ -1,0 +1,330 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+/* Progress Bar - Updated Colors */
+#progress-bar-container {
+  width: 100%;
+  background-color: rgba(64, 80, 224, 0.1); /* Light blue background */
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 20px 0;
+  height: 20px;
+  box-shadow: 0 2px 4px rgba(6, 11, 45, 0.1);
+}
+
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background-color: #4050e0; /* Byzantine Blue */
+  transition: width 0.3s ease-in-out;
+}
+
+/* Main Layout - Updated Colors */
+body {
+  background: #f6fefc; /* Very Light Turquoise */
+  min-height: 100vh;
+  background-image: url("images/backgroundquiz.png");
+  background-size: cover;
+  background-attachment: fixed;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible; /* Prevent scrolling on the body */
+}
+
+.App {
+  background-color: rgba(
+    246,
+    254,
+    252,
+    0.95
+  ); /* Slightly opaque version of F6FEFC */
+  width: 90%;
+  max-width: 600px;
+  margin: 50px auto;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(6, 11, 45, 0.1);
+  border: 1px solid rgba(64, 80, 224, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Ensure content is spaced properly */
+  min-height: 70vh; /* Ensure the container has a minimum height */
+  height: auto; /* Allow the container to grow dynamically */
+  /* max-height: 90vh; */
+  overflow: visible; /* Add scrolling inside the container if content overflows */
+}
+
+/* Typography - Updated to Inter */
+.App h1 {
+  font-size: 32px;
+  color: #060b2d; /* Very Dark Blue */
+  font-weight: 700;
+  padding-bottom: 20px;
+  text-align: center;
+  margin-bottom: 10px;
+  border-bottom: 2px solid rgba(64, 80, 224, 0.2);
+}
+
+.quiz-description {
+  font-size: 18px;
+  color: #060b2d;
+  opacity: 0.8;
+  margin-bottom: 30px;
+  text-align: center;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+#question {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: #060b2d;
+  text-align: center;
+}
+
+.result-container {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.result-title {
+  font-weight: 700;
+  font-size: 22px;
+  color: #060b2d;
+  margin-bottom: 8px;
+}
+
+.result-subtitle {
+  font-style: italic;
+  font-weight: 400;
+  font-size: 18px;
+  color: #4050e0;
+  opacity: 0.9;
+}
+
+.emoji-spacer {
+  font-size: 28px;
+  letter-spacing: 8px;
+  margin: 15px 0;
+  opacity: 0.8;
+}
+
+.score-message {
+  font-size: 18px;
+  font-weight: 600;
+  color: #060b2d;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Buttons - Updated Colors */
+.btn {
+  background: #fff;
+  color: #060b2d;
+  font-weight: 500;
+  width: 100%;
+  border: 2px solid rgba(64, 80, 224, 0.3); /* Byzantine Blue with transparency */
+  padding: 15px;
+  margin: 10px 0;
+  text-align: center;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 16px;
+  box-shadow: 0 4px 8px rgba(6, 11, 45, 0.05);
+}
+
+.btn:hover:not(:disabled) {
+  background: #4050e0; /* Byzantine Blue */
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(64, 80, 224, 0.1);
+}
+
+#next-btn {
+  background: #4050e0; /* Byzantine Blue */
+  color: #fff;
+  font-weight: 600;
+  width: 180px;
+  border: none;
+  padding: 12px;
+  margin: 20px auto 0; /* Center the button */
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  align-self: center; /* Ensure it stays centered in the container */
+  margin-top: 20px; /* Add spacing above the Restart button */
+}
+
+#next-btn:hover {
+  background: #3444c0; /* Darker blue on hover */
+  transform: translateY(-2px);
+}
+
+/* Answer States - Updated Colors */
+.correct {
+  background-color: #40e0d0; /* Turquoise */
+  color: #060b2d;
+  border-color: #40e0d0;
+}
+
+.incorrect {
+  background-color: rgba(64, 80, 224, 0.1); /* Light Byzantine Blue */
+  color: #060b2d;
+  border-color: rgba(64, 80, 224, 0.3);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+/* Sidebar Styles */
+.sidebar {
+  position: absolute; /* Attach the sidebar to the container */
+  right: 375.9px; /* Position it slightly outside the container */
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(246, 254, 252, 0.9); /* F6FEFC with transparency */
+  border: 1px solid rgba(64, 80, 224, 0.3); /* 4050E0 border */
+  border-radius: 12px;
+  padding: 15px;
+  width: 80px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(6, 11, 45, 0.1); /* 060B2D shadow */
+  backdrop-filter: blur(5px);
+  z-index: 1000;
+}
+.sidebar:hover {
+  right: 0; /* Keep the sidebar aligned to the right edge */
+  width: 100px;
+  background: rgba(246, 254, 252, 0.95);
+}
+.brand-marker {
+  font-size: 10px;
+  font-weight: 600;
+  color: #4050e0;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.follow-prompt {
+  font-size: 9px;
+  color: #060b2d;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.social-icons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* REPLACE ALL .social-icon rules with this single definition: */
+.social-icon {
+  color: #f6fefc;
+  background: #4050e0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  pointer-events: auto; /* Explicitly enable interactions */
+  will-change: transform, background; /* Optimize animations */
+  z-index: 1001; /* Create new stacking context */
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.social-icon:hover {
+  background: #40e0d0;
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(64, 224, 208, 0.3);
+}
+
+.social-svg {
+  width: 20px;
+  height: 20px;
+  fill: #f6fefc;
+  transition: fill 0.3s ease;
+}
+
+.social-icon:hover .social-svg {
+  fill: #060b2d;
+}
+
+.brand-marker {
+  font-weight: 700;
+  font-size: 14px; /* Slightly larger */
+  color: #4050e0;
+  text-align: center;
+  margin: 15px 0;
+  text-transform: none; /* Removes all-caps */
+  letter-spacing: normal;
+  font-family: "Inter", sans-serif; /* Your brand font */
+}
+
+.brand-marker::before {
+  content: "Made by";
+  display: block;
+  font-weight: 400; /* Regular for "Made by" */
+  font-size: 10px;
+  color: #060b2d; /* Your dark blue */
+  opacity: 0.7;
+  margin-bottom: 2px;
+}
+
+.brand-marker::after {
+  content: "Levannah";
+  display: block;
+  font-size: 12px; /* Emphasized name */
+}
+
+@media (max-width: 768px) {
+  .App {
+    padding: 20px;
+    margin: 20px auto;
+    max-height: 80vh; /* Adjust max height for smaller screens */
+  }
+
+  #next-btn {
+    width: 150px; /* Reduce button size for smaller screens */
+    padding: 10px;
+  }
+
+  #question {
+    font-size: 18px; /* Adjust question font size for smaller screens */
+  }
+
+  .btn {
+    font-size: 14px; /* Adjust button font size for smaller screens */
+    padding: 10px;
+  }
+
+  .sidebar {
+    position: absolute;
+    z-index: 100; /* Increase from 10 to ensure it's above other elements */
+    right: 0;
+    left: 0;
+    bottom: -100px; /* Move to the bottom of the container */
+    top: auto;
+    transform: translateY(0);
+    width: 100%; /* Full width at the bottom */
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    border-radius: 0 0 12px 12px;
+  }
+}
